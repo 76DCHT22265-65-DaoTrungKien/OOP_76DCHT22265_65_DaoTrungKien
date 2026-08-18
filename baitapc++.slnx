@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="baitapc++/baitapc++.vcxproj" Id="764dd40c-570d-412a-bc84-3f7f37649ed5" />
+</Solution>
