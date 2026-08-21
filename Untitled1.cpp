@@ -2,43 +2,52 @@
 #include <string>
 using namespace std;
 
-class NhanVien {
+// khai bao lop
+class NhanVien
+{
 private:
-    string maNhanVien;
-    string hoTen;
-    string ngaySinh;
-    string diaChi;
+    string manv;
+    string hoten;
+    string ngaysinh;
+    string diachi;
 
 public:
-    void nhap() {
+    // Phuong thuc nhap
+    void nhap()
+    {
         cout << "Nhap ma nhan vien: ";
-        getline(cin, maNhanVien);
+        getline(cin, manv);
 
         cout << "Nhap ho ten: ";
-        getline(cin, hoTen);
+        getline(cin, hoten);
 
         cout << "Nhap ngay sinh: ";
-        getline(cin, ngaySinh);
+        getline(cin, ngaysinh);
 
         cout << "Nhap dia chi: ";
-        getline(cin, diaChi);
+        getline(cin, diachi);
     }
 
-    void xuat() {
-        cout << "\n===== THONG TIN NHAN VIEN =====\n";
-        cout << "Ma nhan vien: " << maNhanVien << endl;
-        cout << "Ho ten      : " << hoTen << endl;
-        cout << "Ngay sinh   : " << ngaySinh << endl;
-        cout << "Dia chi     : " << diaChi << endl;
+    // Phuong thuc xuat
+    void xuat()
+    {
+        cout << "Ma nhan vien: " << manv << endl;
+        cout << "Ho ten: " << hoten << endl;
+        cout << "Ngay sinh: " << ngaysinh << endl;
+        cout << "Dia chi: " << diachi << endl;
     }
 };
 
-int main() {
+// Khai bao ham main()
+int main()
+{
+    // Khai bao 1 doi tuong la Minh thuoc lop NhanVien
     NhanVien Minh;
 
-    cout << "Nhap thong tin cho nhan vien Minh:\n";
+    // Nhap thong tin cho Minh
     Minh.nhap();
 
+    // Xuat thong tin cua Minh
     Minh.xuat();
 
     return 0;
