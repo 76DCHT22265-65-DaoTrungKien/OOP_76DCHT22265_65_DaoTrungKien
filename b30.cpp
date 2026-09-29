@@ -1,82 +1,97 @@
-#include<iostream>
-#include<cmath>
 
+#include<iostream>
 using namespace std;
 
 class SP1{
     protected:
-        float pt;
-        float pa;
+        float thuc;
+        float ao;
 
     public:
         SP1(){
-            pt=0;
-            pa=0;
+            thuc = 0;
+            ao = 0;
+        }
+
+        SP1(float t, float a){
+            thuc = t;
+            ao = a;
         }
 
         void nhap(){
             cout<<"Nhap phan thuc: ";
-            cin>>pt;
+            cin>>thuc;
 
             cout<<"Nhap phan ao: ";
-            cin>>pa;
+            cin>>ao;
         }
 
         void in(){
-            cout<<pt;
+            cout<<thuc;
 
-            if(pa>=0){
-                cout<<"+"<<pa<<"i";
-            }
-            else{
-                cout<<pa<<"i";
-            }
+            if(ao >= 0)
+                cout<<" + "<<ao<<"i";
+            else
+                cout<<" - "<<-ao<<"i";
         }
 
-        float modul(){
-            return sqrt(pt*pt + pa*pa);
+        float module(){
+            return thuc * thuc + ao * ao;
         }
 };
 
-class SP2:public SP1{
+class SP2 : public SP1{
     public:
-        SP2 operator=(SP2 p){
-            pt=p.pt;
-            pa=p.pa;
+        SP2() : SP1(){
+        }
+
+        SP2(float t, float a) : SP1(t, a){
+        }
+
+        SP2 operator=(SP2 x){
+            thuc = x.thuc;
+            ao = x.ao;
             return *this;
         }
 
-        bool operator>(SP2 p){
-            return modul()>p.modul();
+        bool operator>(SP2 x){
+            return module() > x.module();
         }
 };
 
 int main(){
-    SP2 a,b,c;
+    SP2 a[10];
+    int n;
 
-    cout<<"Nhap so phuc a:\n";
-    a.nhap();
+    cout<<"Nhap so luong so phuc: ";
+    cin>>n;
 
-    cout<<"Nhap so phuc b:\n";
-    b.nhap();
+    if(n > 10)
+        n = 10;
 
-    cout<<"So phuc a: ";
-    a.in();
-    cout<<"Modul a: "<<a.modul();
+    for(int i=0; i<n; i++){
+        cout<<"\nNhap so phuc thu "<<i+1<<":\n";
+        a[i].nhap();
+    }
 
-    cout<<"\nSo phuc b: ";
-    b.in();
-    cout<<"Modul b: "<<b.modul();
+    for(int i=0; i<n-1; i++){
+        for(int j=i+1; j<n; j++){
+            if(a[j] > a[i]){
+                SP2 tam;
+                tam = a[i];
+                a[i] = a[j];
+                a[j] = tam;
+            }
+        }
+    }
 
-    c=a;
+    cout<<"Danh sach sau khi sap xep giam dan theo module:";
 
-    cout<<"\nSo phuc c sau khi c=a: ";
-    c.in();
-
-    if(a>b)
-        cout<<"\na co modul lon hon b";
-    else
-        cout<<"\na khong co modul lon hon b";
+    for(int i=0; i<n; i++){
+        a[i].in();
+        cout<<"  Module^2 = "<<a[i].module()<<endl;
+    }
 
     return 0;
 }
+
